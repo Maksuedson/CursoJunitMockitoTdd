@@ -5,20 +5,23 @@ import static br.ce.wcaquino.utils.DataUtils.obterDataComDiferencaDias;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.util.Date;
 
 import org.hamcrest.CoreMatchers;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ErrorCollector;
 
 import br.ce.wcaquino.entidades.Filme;
 import br.ce.wcaquino.entidades.Locacao;
 import br.ce.wcaquino.entidades.Usuario;
+import br.ce.wcaquino.utils.DataUtils;
 
-public class LocacaoServiceTest {
+public class LocacaoServiceUsandoRuleTest {
+	@Rule
+	public ErrorCollector error = new ErrorCollector();
 
 	@Test
 	public void test() {
@@ -33,18 +36,11 @@ public class LocacaoServiceTest {
 		//verificacao
 		assertEquals(10.0, locacao.getValor(), 0.01);
 		
-		//Usando assertThat
-		assertThat(locacao.getValor(), CoreMatchers.is(10.0));
-		assertThat(locacao.getValor(), is(10.0));
-		assertThat(locacao.getValor(), is(CoreMatchers.equalTo(10.0)));
-		assertThat(locacao.getValor(), is(equalTo(10.0)));
-		assertThat(locacao.getValor(), is(not(10.0)));
+		//Usando Rule
+		error.checkThat(locacao.getValor(), is(equalTo(10.0)));
+		error.checkThat(isMesmaData(locacao.getDataLocacao(), new Date()), is(true));
+		error.checkThat(isMesmaData(locacao.getDataRetorno(), obterDataComDiferencaDias(1)), is(true));
 		
-		assertTrue(isMesmaData(locacao.getDataLocacao(), new Date()));
-		assertTrue(isMesmaData(locacao.getDataRetorno(), obterDataComDiferencaDias(1)));
-		
-		assertThat(isMesmaData(locacao.getDataLocacao(), new Date()), is(true));
-		assertThat(isMesmaData(locacao.getDataRetorno(), obterDataComDiferencaDias(1)), is(true));
 	}
 
 }
