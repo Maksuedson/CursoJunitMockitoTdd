@@ -12,6 +12,9 @@ public class AssertTest {
 		Assert.assertFalse(false);
 		
 		Assert.assertEquals(1, 1);
+		
+		//double usando delta
+		Assert.assertEquals(0.07, 0.07, 0.01);
 	}
 
 }
