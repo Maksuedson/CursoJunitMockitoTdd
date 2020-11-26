@@ -23,7 +23,7 @@ public class LocacaoService {
 		locacao.setDataRetorno(dataEntrega);
 
 		// Salvando a locacao...
-		// TODO adicionar método para salvar
+		// TODO adicionar metodo para salvar
 
 		return locacao;
 	}
