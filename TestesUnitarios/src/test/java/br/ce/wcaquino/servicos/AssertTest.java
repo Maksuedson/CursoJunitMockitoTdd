@@ -3,6 +3,8 @@ package br.ce.wcaquino.servicos;
 import org.junit.Assert;
 import org.junit.Test;
 
+import br.ce.wcaquino.entidades.Usuario;
+
 
 public class AssertTest {
 	
@@ -23,9 +25,21 @@ public class AssertTest {
 		Assert.assertEquals(i, i2.intValue());
 		
 		//String
-		Assert.assertEquals("Bola", "bola");
+		Assert.assertNotEquals("Bola", "ola");
+		Assert.assertEquals("Bola", "Bola");
 		Assert.assertTrue("Bola".equalsIgnoreCase("bola"));
-		Assert.assertTrue("Bola".startsWith("bo"));
+		Assert.assertTrue("Bola".startsWith("Bo"));
+		
+		//Comparacao de objetos
+		
+		Usuario usuario1 = new Usuario("Usuario1");
+		Usuario usuario2 = new Usuario("Usuario1");
+		Usuario usuario3 = null;
+		Assert.assertEquals(usuario1, usuario2);
+		
+		//Comparando a mesma instancia
+		Assert.assertSame(usuario1, usuario1);
+		Assert.assertNull(usuario3);
 	}
 
 }
