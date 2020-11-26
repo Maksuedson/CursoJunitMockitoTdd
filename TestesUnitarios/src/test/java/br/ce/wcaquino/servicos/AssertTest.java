@@ -18,9 +18,14 @@ public class AssertTest {
 		
 		int i = 5;
 		Integer i2 = 5;
-		
+		//Box e unboxing
 		Assert.assertEquals(Integer.valueOf(i), i2);
 		Assert.assertEquals(i, i2.intValue());
+		
+		//String
+		Assert.assertEquals("Bola", "bola");
+		Assert.assertTrue("Bola".equalsIgnoreCase("bola"));
+		Assert.assertTrue("Bola".startsWith("bo"));
 	}
 
 }
